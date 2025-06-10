@@ -1,46 +1,39 @@
-# flask-api
-This is a simple Flask-based REST API designed to run on **Google Cloud Run**. It's containerized with Docker and ready for deployment.
+# 🚀 Flask App on Google Kubernetes Engine (GKE)
 
-## Features
-- RESTful endpoints with Flask
-- Dockerized for easy deployment
-- Ready for Google Cloud Run
-- Secure and scalable
+This is a simple Flask web app containerized with Docker and deployed to GKE using Kubernetes.
 
-  flask-cloud-run-api/
-├── app.py
-├── requirements.txt
-├── Dockerfile
-├── .gitignore
-└── README.md
+## 🌐 What It Does
 
-''bash
-git clone git@github.com:Migueleng/flask-cloud-run-api.git
-cd flask-cloud-run-api
-
-pip install -r requirements.txt
-
-python app.py
+Returns:
 
 
-##Docker setup
-# Build the Docker locally
-docker build -t flask-api .
-# Run the container locally 
-docker run -p 8080:8080 flask-api
+Hello from Kubernetes 
 
 
-##Deploy the Google Cloud Run
-1- Push the Docker image to Google Container REgistry  or Artifact Registry
-2- Deploy using gcloud CLI 
-gcloud run deploy flask-api \
-  --source . \
-  --region us-central1 \
-  --platform managed \
-  --allow-unauthenticated
+## 📦 Tech Stack
+
+- Flask
+- Docker
+- Gunicorn
+- Google Cloud (GKE + GCR)
+- Kubernetes
+
+## 🚀 How to Deploy
+
+1. Build and push Docker image:
+```bash
+docker build -t flask-k8s-app .
+docker tag flask-k8s-app gcr.io/YOUR_PROJECT_ID/flask-k8s-app
+docker push gcr.io/YOUR_PROJECT_ID/flask-k8s-app
+
+## Apply kubernetes manifests
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+## get external IP address and access app
+kubectl get service flask-k8s-service
 
 
-Contact :
-Sitou Miguel Efraim Agbodjinou 
-Github: Migueleng 
+I'm Miguel — passionate about cloud engineering, DevOps, and deploying real-world apps on GCP!
+
 
